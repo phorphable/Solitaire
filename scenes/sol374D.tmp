@@ -1,0 +1,191 @@
+[gd_scene load_steps=12 format=3 uid="uid://b6nivjxn25kxr"]
+
+[ext_resource type="Script" path="res://scripts/solitaire_match.gd" id="1_f6sq8"]
+[ext_resource type="PackedScene" uid="uid://8q3dfftppphh" path="res://scenes/card_stack.tscn" id="3_fc4pd"]
+[ext_resource type="Script" path="res://scripts/ui_solitaire.gd" id="5_54kdc"]
+[ext_resource type="PackedScene" uid="uid://bq2obfq248u1i" path="res://scenes/card.tscn" id="5_agemt"]
+[ext_resource type="PackedScene" uid="uid://d12wl6iy855rh" path="res://scenes/dragon_button.tscn" id="5_wd3rp"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mj8ny"]
+size = Vector2(16.025, 9.035)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_8navi"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_rjqgi"]
+
+[sub_resource type="Sky" id="Sky_nsvsh"]
+sky_material = SubResource("PhysicalSkyMaterial_rjqgi")
+
+[sub_resource type="Environment" id="Environment_ygov1"]
+background_mode = 2
+sky = SubResource("Sky_nsvsh")
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_6sd1a"]
+
+[node name="SolitaireMatch" type="Node3D" node_paths=PackedStringArray("camera", "dragon_buttons")]
+script = ExtResource("1_f6sq8")
+camera = NodePath("Camera3D")
+card_template = ExtResource("5_agemt")
+dragon_buttons = NodePath("DragonButtons")
+
+[node name="CardStacks" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
+
+[node name="CardStack1" parent="CardStacks" instance=ExtResource("3_fc4pd")]
+
+[node name="CardStack2" parent="CardStacks" instance=ExtResource("3_fc4pd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 0, 0)
+
+[node name="CardStack3" parent="CardStacks" instance=ExtResource("3_fc4pd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2, 0, 0)
+
+[node name="CardStack4" parent="CardStacks" instance=ExtResource("3_fc4pd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3, 0, 0)
+
+[node name="CardStack5" parent="CardStacks" instance=ExtResource("3_fc4pd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4, 0, 0)
+
+[node name="CardStack6" parent="CardStacks" instance=ExtResource("3_fc4pd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 0)
+
+[node name="CardStack7" parent="CardStacks" instance=ExtResource("3_fc4pd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6, 0, 0)
+
+[node name="CardStack8" parent="CardStacks" instance=ExtResource("3_fc4pd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7, 0, 0)
+
+[node name="CardStack9" parent="CardStacks" instance=ExtResource("3_fc4pd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.3)
+stack_type = 1
+use_first_card_position = false
+
+[node name="CardStack10" parent="CardStacks" instance=ExtResource("3_fc4pd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 0, -2.3)
+stack_type = 1
+use_first_card_position = false
+
+[node name="CardStack11" parent="CardStacks" instance=ExtResource("3_fc4pd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2, 0, -2.3)
+stack_type = 1
+use_first_card_position = false
+
+[node name="CardStack12" parent="CardStacks" instance=ExtResource("3_fc4pd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1, 0, -2.3)
+stack_type = 3
+use_first_card_position = false
+
+[node name="CardStack13" parent="CardStacks" instance=ExtResource("3_fc4pd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -2.3)
+stack_type = 2
+use_first_card_position = false
+
+[node name="CardStack14" parent="CardStacks" instance=ExtResource("3_fc4pd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6, 0, -2.3)
+stack_type = 2
+use_first_card_position = false
+
+[node name="CardStack15" parent="CardStacks" instance=ExtResource("3_fc4pd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7, 0, -2.3)
+stack_type = 2
+use_first_card_position = false
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 3.85, 4, 3.5)
+projection = 1
+current = true
+size = 5.855
+far = 20.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.761, 0, 0)
+gi_mode = 2
+mesh = SubResource("PlaneMesh_mj8ny")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 2
+collision_mask = 2
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_8navi")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.483771, -0.638919, 0.59812, 2.98023e-08, 0.683414, 0.730031, -0.875195, 0.353168, -0.330616, 11.0775, 4.2295, -2.00779)
+shadow_enabled = true
+shadow_bias = 0.057
+directional_shadow_blend_splits = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ygov1")
+camera_attributes = SubResource("CameraAttributesPhysical_6sd1a")
+
+[node name="DragonButtons" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.15, 0, -2.9)
+
+[node name="DragonButton1" parent="DragonButtons" instance=ExtResource("5_wd3rp")]
+deck_type = 3
+
+[node name="DragonButton2" parent="DragonButtons" instance=ExtResource("5_wd3rp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
+deck_type = 4
+
+[node name="DragonButton3" parent="DragonButtons" instance=ExtResource("5_wd3rp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2)
+deck_type = 5
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+size_flags_horizontal = 10
+size_flags_vertical = 2
+script = ExtResource("5_54kdc")
+
+[node name="BoxContainer" type="BoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 144.0
+grow_horizontal = 0
+vertical = true
+
+[node name="PanelHome" type="Panel" parent="UI/BoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="ButtonHome" type="Button" parent="UI/BoxContainer/PanelHome"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Home"
+flat = true
+
+[node name="PanelRetry" type="Panel" parent="UI/BoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="ButtonRetry" type="Button" parent="UI/BoxContainer/PanelRetry"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Retry"
+flat = true
+
+[connection signal="retry_pressed" from="UI" to="." method="_on_ui_retry_pressed"]
+[connection signal="pressed" from="UI/BoxContainer/PanelRetry/ButtonRetry" to="UI" method="_on_button_retry_pressed"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://d12wl6iy855rh"]
+
+[ext_resource type="Script" path="res://scripts/dragon_button.gd" id="1_ver7x"]
+[ext_resource type="Script" path="res://scripts/area_button.gd" id="2_n2a5m"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pt4ea"]
+size = Vector3(0.5, 0.2, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pgd76"]
+size = Vector3(0.5, 0.2, 0.5)
+
+[node name="DragonButton" type="Node3D"]
+script = ExtResource("1_ver7x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_pt4ea")
+
+[node name="Label3DState" type="Label3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.113, 0)
+text = "state"
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("2_n2a5m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_pgd76")

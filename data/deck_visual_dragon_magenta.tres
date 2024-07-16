@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="DeckVisualData" load_steps=2 format=3 uid="uid://by7bekgoqi7ga"]
+
+[ext_resource type="Script" path="res://data/deck_visual_data.gd" id="1_xb6mo"]
+
+[resource]
+script = ExtResource("1_xb6mo")
+color = Color(0.698738, 0.484447, 0.936554, 1)
