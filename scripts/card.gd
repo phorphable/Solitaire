@@ -4,7 +4,7 @@ extends Node3D
 
 
 #region signals
-signal move_animation_finished(card: Card)
+signal move_animation_finished(card: Card, trigger_cards_changed: bool)
 #endregion
 
 
@@ -127,7 +127,7 @@ func set_data(new_card_id: int, new_deck_id: int):
 	return self
 
 
-func move_smooth(speed_multiplier: float = 1.0):
+func move_smooth(trigger_cards_changed: bool = true):
 	if _movement_tween:
 		if not _movement_tween.is_valid():
 			_movement_tween = create_tween()
@@ -139,21 +139,21 @@ func move_smooth(speed_multiplier: float = 1.0):
 	else:
 		_movement_tween = create_tween()
 	
-	var tween_time = MOVEMENT_SPEED * Vector3.ZERO.distance_to(position) * speed_multiplier
+	var tween_time = MOVEMENT_SPEED * Vector3.ZERO.distance_to(position)
 	_wait_for_movement = true
 	_movement_tween.stop()
 	_movement_tween.tween_property(self, "position", Vector3.ZERO, tween_time)
-	_movement_tween.tween_callback(_movement_finished)
+	_movement_tween.tween_callback(_movement_finished.bind(trigger_cards_changed))
 	_movement_tween.play()
 #endregion
 
 
 #region private methods
-func _movement_finished():
+func _movement_finished(trigger_cards_changed: bool = true):
 	_wait_for_movement = false
 	
 	if card_stack != CardHandStack.instance:
-		move_animation_finished.emit(self)
+		move_animation_finished.emit(self, trigger_cards_changed)
 
 
 func _pick():
@@ -165,12 +165,12 @@ func _pick():
 			return
 		
 		if card_stack.get_top_card() == self:
-			CardHandStack.instance.stack_cards(card_stack.get_substack_cards(self))
+			CardHandStack.instance.stack_cards(card_stack.get_substack_cards(self), false)
 			_is_picked_up = true
 		
 		elif SolitaireSettings.can_pick_substacks:
 			if card_stack.can_pick_substack_at(self):
-				CardHandStack.instance.stack_cards(card_stack.get_substack_cards(self))
+				CardHandStack.instance.stack_cards(card_stack.get_substack_cards(self), false)
 				_is_picked_up = true
 
 

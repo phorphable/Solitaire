@@ -77,7 +77,7 @@ func _init():
 
 
 #region public methods
-func stack_card(card: Card):
+func stack_card(card: Card, trigger_cards_changed: bool = true):
 	if not card:
 		return
 	
@@ -92,12 +92,12 @@ func stack_card(card: Card):
 		_place_path_follow()
 	
 	_update_card_stack_of_card(card)
-	_place_card_into_position(card, card_position_num)
+	_place_card_into_position(card, card_position_num, trigger_cards_changed)
 	
 	if not card.move_animation_finished.is_connected(_on_card_move_finished):
 		card.move_animation_finished.connect(_on_card_move_finished)
 
-func stack_cards(cards: Array[Card]):
+func stack_cards(cards: Array[Card], trigger_cards_changed: bool = true):
 	if cards.is_empty():
 		return
 	
@@ -105,7 +105,7 @@ func stack_cards(cards: Array[Card]):
 		CardHandStack.previous_card_stack = cards.front().card_stack
 	
 	for card in cards:
-		stack_card(card)
+		stack_card(card, trigger_cards_changed)
 
 func unstack_card():
 	_cards.pop_back()
@@ -163,18 +163,18 @@ func get_substack_cards(card: Card) -> Array[Card]:
 
 
 #region private methods
-func _on_card_move_finished(card: Card):
+func _on_card_move_finished(card: Card, trigger_cards_changed: bool = true):
 	if card.move_animation_finished.is_connected(_on_card_move_finished):
 		card.move_animation_finished.disconnect(_on_card_move_finished)
 	
 	_remove_excess_cards()
 	
 	if SolitaireMatch.instance:
-		if not SolitaireMatch.instance.dealing_cards:
+		if not SolitaireMatch.instance.dealing_cards and trigger_cards_changed:
 			cards_changed.emit()
 
 
-func _place_card_into_position(card: Card, position_slot: int):
+func _place_card_into_position(card: Card, position_slot: int, trigger_cards_changed: bool = true):
 	if not card:
 		return
 	
@@ -188,14 +188,14 @@ func _place_card_into_position(card: Card, position_slot: int):
 	
 	if card.get_parent():
 		card.reparent(card_position_slot)
-		card.move_smooth()
+		card.move_smooth(trigger_cards_changed)
 	
 	else:
 		card_position_slot.add_child(card)
 		
 		if SolitaireMatch.instance:
 			if SolitaireMatch.instance.card_spawn_point:
-				card.move_smooth()
+				card.move_smooth(trigger_cards_changed)
 
 func _update_card_stack_of_card(card: Card):
 	if card:

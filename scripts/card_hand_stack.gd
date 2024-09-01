@@ -78,16 +78,12 @@ func _process(delta):
 #region public methods
 func return_cards():
 	if is_instance_valid(previous_card_stack):
-		previous_card_stack.stack_cards(_cards.duplicate())
+		previous_card_stack.stack_cards(_cards.duplicate(), false)
 #endregion
 
 
 #region private methods
-func _on_card_move_finished(_card: Card):
-	pass
-
-
-func _on_card_move_finished_by_player(_card: Card):
+func _on_card_move_finished(_card: Card, trigger_cards_changed: bool = true):
 	pass
 #endregion
 
