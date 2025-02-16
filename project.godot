@@ -11,14 +11,19 @@ config_version=5
 [application]
 
 config/name="Solitaire"
-run/main_scene="res://scenes/game_main.tscn"
-config/features=PackedStringArray("4.2", "Forward Plus")
+run/main_scene="res://levels/main/game_main.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-S_Raycaster3D="*res://scripts/raycaster_3d.gd"
-S_SolitaireAssets="*res://scripts/solitaire_assets.gd"
+S_Raycaster3D="*res://scripts/utility/raycaster_3d.gd"
+S_DebugPrint="res://scripts/utility/debug_print.gd"
+
+[display]
+
+display_server/driver.windows="windows"
+display_server/driver.linuxbsd="wayland"
 
 [editor]
 
@@ -31,7 +36,7 @@ import/blender/enabled=false
 
 [input]
 
-"Mouse Left Click"={
+Click={
 "deadzone": 0.5,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
 ]
@@ -41,5 +46,6 @@ import/blender/enabled=false
 
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=5
 lights_and_shadows/positional_shadow/soft_shadow_filter_quality=5
-anti_aliasing/quality/msaa_3d=3
+anti_aliasing/quality/msaa_2d=1
+anti_aliasing/quality/msaa_3d=1
 anti_aliasing/quality/screen_space_aa=1
