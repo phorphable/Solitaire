@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://da62oqehxiqkl"]
+
+[ext_resource type="Script" path="res://levels/main/game_main.gd" id="1_20xtp"]
+[ext_resource type="PackedScene" uid="uid://1k25eb2knkq2" path="res://game_objects/player/camera_target.tscn" id="3_iq6at"]
+[ext_resource type="PackedScene" uid="uid://wnh0x2mtakt5" path="res://game_objects/board/board.tscn" id="3_vgjvs"]
+[ext_resource type="Script" path="res://ui/ui.gd" id="4_iah0j"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_fphpp"]
+
+[node name="GameMain" type="Node3D"]
+script = ExtResource("1_20xtp")
+
+[node name="CameraTarget" parent="." instance=ExtResource("3_iq6at")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.861957, 0.506982, 0, -0.506982, 0.861957, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("WorldBoundaryShape3D_fphpp")
+
+[node name="Board" parent="." instance=ExtResource("3_vgjvs")]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("4_iah0j")

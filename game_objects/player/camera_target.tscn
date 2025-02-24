@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://1k25eb2knkq2"]
+
+[ext_resource type="Script" path="res://game_objects/player/camera_target.gd" id="1_7i4s5"]
+[ext_resource type="Curve" uid="uid://dw5oxhjb0isqo" path="res://game_objects/player/camera_movement.tres" id="2_ljnmr"]
+
+[node name="CameraTarget" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866026, 0.5, 0, 0.293129, 0.983346)
+script = ExtResource("1_7i4s5")
+movement_curve = ExtResource("2_ljnmr")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+current = true
+fov = 40.0

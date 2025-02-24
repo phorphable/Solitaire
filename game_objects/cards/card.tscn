@@ -1,0 +1,88 @@
+[gd_scene load_steps=14 format=3 uid="uid://w4pp38gckxl7"]
+
+[ext_resource type="Script" path="res://game_objects/cards/card.gd" id="1_o57fv"]
+[ext_resource type="PackedScene" uid="uid://crigcs6xsorou" path="res://imports/card.glb" id="1_q7uki"]
+[ext_resource type="AnimationLibrary" uid="uid://ci2x664l5vce2" path="res://imports/card animations.glb" id="2_ju80n"]
+[ext_resource type="Material" uid="uid://vm7ug1tchaby" path="res://game_objects/cards/materials/m_card_main.tres" id="3_s8ky8"]
+[ext_resource type="Material" uid="uid://cu56wdrb88agu" path="res://game_objects/cards/materials/sm_card_display.tres" id="4_l215h"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pxt6g"]
+animation = &"card animations/Close"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bjymv"]
+animation = &"card animations/Open"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o2fq8"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "reached_destination and not _child_card and not spawn_locked and not is_in_selected_stack()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cudiq"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "spawn_locked or _child_card or not reached_destination or is_in_selected_stack()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r3e3f"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_oqfck"]
+"states/card animations_Close/node" = SubResource("AnimationNodeAnimation_pxt6g")
+"states/card animations_Close/position" = Vector2(378, 100)
+"states/card animations_Open/node" = SubResource("AnimationNodeAnimation_bjymv")
+"states/card animations_Open/position" = Vector2(641, 100)
+transitions = ["card animations_Close", "card animations_Open", SubResource("AnimationNodeStateMachineTransition_o2fq8"), "card animations_Open", "card animations_Close", SubResource("AnimationNodeStateMachineTransition_cudiq"), "Start", "card animations_Close", SubResource("AnimationNodeStateMachineTransition_r3e3f")]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c7s2m"]
+size = Vector3(1, 0.1, 0.15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_khenl"]
+size = Vector3(1, 0.1, 1.15138)
+
+[node name="Card" node_paths=PackedStringArray("boneAttachment", "_card_mesh", "_collisionSmall", "_collisionBig") instance=ExtResource("1_q7uki")]
+script = ExtResource("1_o57fv")
+boneAttachment = NodePath("BoneAttachment3D")
+_card_mesh = NodePath("SK_Card/Skeleton3D/Card")
+_collisionSmall = NodePath("Area3D/CollisionSmall")
+_collisionBig = NodePath("Area3D/CollisionBig")
+
+[node name="Skeleton3D" parent="SK_Card" index="0"]
+bones/1/position = Vector3(0, 0, 0.125)
+bones/4/scale = Vector3(0, 1, 0)
+
+[node name="Card" parent="SK_Card/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("3_s8ky8")
+surface_material_override/1 = ExtResource("4_l215h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+"card animations": ExtResource("2_ju80n")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeStateMachine_oqfck")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25)
+bone_name = "ATTACH_NextCard"
+bone_idx = 2
+use_external_skeleton = true
+external_skeleton = NodePath("../SK_Card/Skeleton3D")
+
+[node name="Area3D" type="Area3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+
+[node name="CollisionSmall" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0747688)
+shape = SubResource("BoxShape3D_c7s2m")
+disabled = true
+
+[node name="CollisionBig" type="CollisionShape3D" parent="Area3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.575581)
+shape = SubResource("BoxShape3D_khenl")
+disabled = true
+
+[connection signal="animation_started" from="AnimationTree" to="." method="_on_animation_tree_animation_started"]
+[connection signal="mouse_entered" from="Area3D" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Area3D" to="." method="_on_mouse_exited"]

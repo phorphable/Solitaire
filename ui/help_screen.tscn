@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxvq3xa2t3kbw"]
+
+[ext_resource type="Script" path="res://ui/help_screen.gd" id="1_fb85l"]
+
+[node name="HelpScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_fb85l")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "1. To win, stack the three gray numbered decks from 0 to 8 in the top-right corner and sort the colored decks into the top-left corner.
+2. Cards can be stacked and moved in the center of the play area, but only if they are of alternating numbered decks and decreasing values.
+3. The three cells in the top-left corner can store one card of any type.
+4. When all four colored cards of a single color are exposed, they can all be permanently moved to a cell int the top-left by pushing the corresponding button."
+fit_content = true
+scroll_active = false

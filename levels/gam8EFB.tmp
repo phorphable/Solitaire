@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://da62oqehxiqkl"]
+
+[ext_resource type="Script" path="res://scripts/game_main.gd" id="1_webqq"]
+[ext_resource type="PackedScene" uid="uid://bq2obfq248u1i" path="res://scenes/card.tscn" id="2_l7tm4"]
+[ext_resource type="PackedScene" uid="uid://8q3dfftppphh" path="res://scenes/card_stack.tscn" id="2_nkdum"]
+
+[node name="GameMain" type="Node" node_paths=PackedStringArray("card_stack", "card1", "card2")]
+script = ExtResource("1_webqq")
+card_stack = NodePath("CardStack")
+card1 = NodePath("Card1")
+card2 = NodePath("Card2")
+
+[node name="CardStack" parent="." instance=ExtResource("2_nkdum")]
+
+[node name="Card1" parent="." instance=ExtResource("2_l7tm4")]
+deck_id = 1
+
+[node name="Card2" parent="." node_paths=PackedStringArray("label_card_number", "label_deck_number") instance=ExtResource("2_l7tm4")]
+label_card_number = NodePath("../Card1/MeshInstance3D/CardNumber")
+label_deck_number = NodePath("../Card1/MeshInstance3D/DeckNumber")

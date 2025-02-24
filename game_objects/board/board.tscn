@@ -1,0 +1,158 @@
+[gd_scene load_steps=9 format=3 uid="uid://wnh0x2mtakt5"]
+
+[ext_resource type="PackedScene" uid="uid://ddwhedqbpylvc" path="res://game_objects/cards/card_slots/card_slot.tscn" id="1_k36j1"]
+[ext_resource type="Script" path="res://game_objects/board/board.gd" id="1_vl3vv"]
+[ext_resource type="PackedScene" uid="uid://byyufa2uulgo1" path="res://game_objects/cards/card_spawns/card_spawn.tscn" id="2_b7j3u"]
+[ext_resource type="PackedScene" uid="uid://ccdk4p33aokfx" path="res://game_objects/board/dragon_button.tscn" id="5_4ed0a"]
+[ext_resource type="Resource" uid="uid://bi64puaw7ta53" path="res://game_objects/cards/deck_dragon_one.tres" id="5_8n12n"]
+[ext_resource type="Resource" uid="uid://d2joulk32agml" path="res://game_objects/cards/deck_dragon_two.tres" id="6_4h6c6"]
+[ext_resource type="PackedScene" uid="uid://bofpr1losto03" path="res://game_objects/board/board_button.tscn" id="6_smc48"]
+[ext_resource type="Resource" uid="uid://qp8addgnyt6e" path="res://game_objects/cards/deck_dragon_three.tres" id="7_slswu"]
+
+[node name="Board" type="Node3D" node_paths=PackedStringArray("card_slots_dragon", "card_slot_sakura", "card_slots_final", "card_slots_other")]
+script = ExtResource("1_vl3vv")
+card_slots_dragon = [NodePath("Slots/CardSlotD1"), NodePath("Slots/CardSlotD2"), NodePath("Slots/CardSlotD3")]
+card_slot_sakura = NodePath("Slots/CardSlotS")
+card_slots_final = [NodePath("Slots/CardSlotNF1"), NodePath("Slots/CardSlotNF2"), NodePath("Slots/CardSlotNF3")]
+card_slots_other = [NodePath("Slots/CardSlot01"), NodePath("Slots/CardSlot02"), NodePath("Slots/CardSlot03"), NodePath("Slots/CardSlot04"), NodePath("Slots/CardSlot05"), NodePath("Slots/CardSlot06"), NodePath("Slots/CardSlot07"), NodePath("Slots/CardSlot08")]
+
+[node name="Slots" type="Node" parent="."]
+
+[node name="CardSlotD1" parent="Slots" instance=ExtResource("1_k36j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9, 0, -2.4)
+limit_stack_number = true
+is_dragon_slot = true
+
+[node name="CardSlotD2" parent="Slots" instance=ExtResource("1_k36j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -2.4)
+limit_stack_number = true
+is_dragon_slot = true
+
+[node name="CardSlotD3" parent="Slots" instance=ExtResource("1_k36j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1, 0, -2.4)
+limit_stack_number = true
+is_dragon_slot = true
+
+[node name="CardSlotS" parent="Slots" instance=ExtResource("1_k36j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.4)
+is_final_slot = true
+allowed_decks = Array[int]([6])
+
+[node name="CardSlotNF1" parent="Slots" instance=ExtResource("1_k36j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 0, -2.4)
+is_final_slot = true
+allowed_decks = Array[int]([0, 1, 2])
+
+[node name="CardSlotNF2" parent="Slots" instance=ExtResource("1_k36j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -2.4)
+is_final_slot = true
+allowed_decks = Array[int]([0, 1, 2])
+
+[node name="CardSlotNF3" parent="Slots" instance=ExtResource("1_k36j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9, 0, -2.4)
+is_final_slot = true
+allowed_decks = Array[int]([0, 1, 2])
+
+[node name="CardSlot01" parent="Slots" instance=ExtResource("1_k36j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9, 0, 0)
+
+[node name="CardSlot02" parent="Slots" instance=ExtResource("1_k36j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 0)
+
+[node name="CardSlot03" parent="Slots" instance=ExtResource("1_k36j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1, 0, 0)
+
+[node name="CardSlot04" parent="Slots" instance=ExtResource("1_k36j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 0, 0)
+
+[node name="CardSlot05" parent="Slots" instance=ExtResource("1_k36j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0, 0)
+
+[node name="CardSlot06" parent="Slots" instance=ExtResource("1_k36j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 0, 0)
+
+[node name="CardSlot07" parent="Slots" instance=ExtResource("1_k36j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 0)
+
+[node name="CardSlot08" parent="Slots" instance=ExtResource("1_k36j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9, 0, 0)
+
+[node name="Spawns" type="Node" parent="."]
+
+[node name="CardSpawn" parent="Spawns" node_paths=PackedStringArray("target_slot") instance=ExtResource("2_b7j3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9, 0, 5)
+target_slot = NodePath("../../Slots/CardSlot01")
+
+[node name="CardSpawn2" parent="Spawns" node_paths=PackedStringArray("target_slot") instance=ExtResource("2_b7j3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 5)
+target_slot = NodePath("../../Slots/CardSlot02")
+
+[node name="CardSpawn3" parent="Spawns" node_paths=PackedStringArray("target_slot") instance=ExtResource("2_b7j3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1, 0, 5)
+target_slot = NodePath("../../Slots/CardSlot03")
+
+[node name="CardSpawn4" parent="Spawns" node_paths=PackedStringArray("target_slot") instance=ExtResource("2_b7j3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 0, 5)
+target_slot = NodePath("../../Slots/CardSlot04")
+
+[node name="CardSpawn5" parent="Spawns" node_paths=PackedStringArray("target_slot") instance=ExtResource("2_b7j3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0, 5)
+target_slot = NodePath("../../Slots/CardSlot05")
+
+[node name="CardSpawn6" parent="Spawns" node_paths=PackedStringArray("target_slot") instance=ExtResource("2_b7j3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 0, 5)
+target_slot = NodePath("../../Slots/CardSlot06")
+
+[node name="CardSpawn7" parent="Spawns" node_paths=PackedStringArray("target_slot") instance=ExtResource("2_b7j3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 5)
+target_slot = NodePath("../../Slots/CardSlot07")
+
+[node name="CardSpawn8" parent="Spawns" node_paths=PackedStringArray("target_slot") instance=ExtResource("2_b7j3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9, 0, 5)
+target_slot = NodePath("../../Slots/CardSlot08")
+
+[node name="Buttons" type="Node" parent="."]
+
+[node name="DragonButton" parent="Buttons" instance=ExtResource("5_4ed0a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2.1)
+dragon_deck_id = 3
+deck_asset = ExtResource("5_8n12n")
+text = "<-"
+
+[node name="DragonButton2" parent="Buttons" instance=ExtResource("5_4ed0a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1.4)
+dragon_deck_id = 4
+deck_asset = ExtResource("6_4h6c6")
+text = "<-"
+
+[node name="DragonButton3" parent="Buttons" instance=ExtResource("5_4ed0a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -0.7)
+dragon_deck_id = 5
+deck_asset = ExtResource("7_slswu")
+text = "<-"
+
+[node name="NewGame" parent="Buttons" instance=ExtResource("6_smc48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0, -3.3)
+text = "New Game"
+
+[node name="Exit" parent="Buttons" instance=ExtResource("6_smc48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0, -3.3)
+text = "Exit"
+
+[node name="Help" parent="Buttons" instance=ExtResource("6_smc48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1.75)
+text = "Help"
+
+[node name="Settings" parent="Buttons" instance=ExtResource("6_smc48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1.05)
+visible = false
+text = "Settings"
+
+[connection signal="update_dragon_buttons" from="." to="Buttons/DragonButton" method="_on_board_update_dragon_buttons"]
+[connection signal="button_pressed" from="Buttons/DragonButton" to="." method="_on_dragon_button_pressed" binds= [3]]
+[connection signal="button_pressed" from="Buttons/DragonButton2" to="." method="_on_dragon_button_pressed" binds= [4]]
+[connection signal="button_pressed" from="Buttons/DragonButton3" to="." method="_on_dragon_button_pressed" binds= [5]]
+[connection signal="button_pressed" from="Buttons/NewGame" to="." method="new_game"]
+[connection signal="button_pressed" from="Buttons/Exit" to="." method="exit_game"]
+[connection signal="button_pressed" from="Buttons/Help" to="." method="show_help"]
+[connection signal="button_pressed" from="Buttons/Settings" to="." method="show_settings"]

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="DeckAsset" load_steps=3 format=3 uid="uid://d2joulk32agml"]
+
+[ext_resource type="Texture2D" uid="uid://mlm2okvfq1mx" path="res://game_objects/cards/textures/card_icon0009.png" id="1_iyrr5"]
+[ext_resource type="Script" path="res://game_objects/cards/deck_assets.gd" id="2_6i473"]
+
+[resource]
+script = ExtResource("2_6i473")
+deck_color = Color(0.301961, 0.8, 0.54902, 1)
+card_id_icons = Array[Texture2D]([ExtResource("1_iyrr5")])

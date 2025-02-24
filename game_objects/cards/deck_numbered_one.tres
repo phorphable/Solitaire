@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DeckAsset" load_steps=11 format=3 uid="uid://k6v3k7lkbemg"]
+
+[ext_resource type="Texture2D" uid="uid://cqgk3cfe5wy6u" path="res://game_objects/cards/textures/card_icon0000.png" id="1_gq0xg"]
+[ext_resource type="Texture2D" uid="uid://ct2q7gvakn8mr" path="res://game_objects/cards/textures/card_icon0001.png" id="2_8150w"]
+[ext_resource type="Texture2D" uid="uid://wnwrguy4fugm" path="res://game_objects/cards/textures/card_icon0002.png" id="3_apmrr"]
+[ext_resource type="Texture2D" uid="uid://bx28vybrlwals" path="res://game_objects/cards/textures/card_icon0003.png" id="4_a28aw"]
+[ext_resource type="Texture2D" uid="uid://cem6547225747" path="res://game_objects/cards/textures/card_icon0004.png" id="5_0wk0g"]
+[ext_resource type="Texture2D" uid="uid://dt6bx2r8c0kmj" path="res://game_objects/cards/textures/card_icon0005.png" id="6_jwy8a"]
+[ext_resource type="Texture2D" uid="uid://dhyvpoyu3xqqf" path="res://game_objects/cards/textures/card_icon0006.png" id="7_n0x63"]
+[ext_resource type="Texture2D" uid="uid://dcki7j1pllqjo" path="res://game_objects/cards/textures/card_icon0007.png" id="8_srjms"]
+[ext_resource type="Texture2D" uid="uid://dtfmouettikra" path="res://game_objects/cards/textures/card_icon0008.png" id="9_kxqln"]
+[ext_resource type="Script" path="res://game_objects/cards/deck_assets.gd" id="10_lhifi"]
+
+[resource]
+script = ExtResource("10_lhifi")
+deck_color = Color(0.169245, 0.169245, 0.169245, 1)
+card_id_icons = Array[Texture2D]([ExtResource("1_gq0xg"), ExtResource("2_8150w"), ExtResource("3_apmrr"), ExtResource("4_a28aw"), ExtResource("5_0wk0g"), ExtResource("6_jwy8a"), ExtResource("7_n0x63"), ExtResource("8_srjms"), ExtResource("9_kxqln")])

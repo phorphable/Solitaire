@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c3e3datbuu16h"]
+
+[ext_resource type="Texture2D" uid="uid://cqgk3cfe5wy6u" path="res://game_objects/cards/textures/card_icon0000.png" id="1_prphx"]
+
+[resource]
+resource_local_to_scene = true
+transparency = 1
+albedo_texture = ExtResource("1_prphx")

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccdk4p33aokfx"]
+
+[ext_resource type="Script" path="res://game_objects/board/dragon_button.gd" id="1_5xmdd"]
+[ext_resource type="PackedScene" uid="uid://c5rxqdsa1wwxn" path="res://imports/dragon_button.glb" id="1_gwhmb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nviko"]
+size = Vector3(0.6, 0.1, 0.6)
+
+[node name="DragonButton" type="Area3D"]
+script = ExtResource("1_5xmdd")
+
+[node name="dragon_button" parent="." instance=ExtResource("1_gwhmb")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("BoxShape3D_nviko")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0.25, 0)
+text = "Button"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

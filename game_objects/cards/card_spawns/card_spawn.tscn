@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://byyufa2uulgo1"]
+
+[ext_resource type="Script" path="res://game_objects/cards/card_spawns/card_spawn.gd" id="1_d2fwu"]
+
+[node name="CardSpawn" type="Marker3D"]
+script = ExtResource("1_d2fwu")
