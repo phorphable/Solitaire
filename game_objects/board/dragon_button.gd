@@ -24,17 +24,17 @@ func _ready() -> void:
 		var material = _mesh.get_active_material(0).duplicate() as StandardMaterial3D
 		material.albedo_color = deck_asset.deck_color
 		_mesh.set_surface_override_material(0, material)
-	
-	_disable_button()
+		
+	disable_button()
 
 func _on_board_update_dragon_buttons(decks) -> void:
 	if dragon_deck_id in decks:
-		_disable_button(false)
+		disable_button(false)
 	
 	else:
-		_disable_button()
+		disable_button()
 
-func _disable_button(state: bool = true):
+func disable_button(state: bool = true):
 	input_ray_pickable = not state
 	
 	if deck_asset and _mesh:

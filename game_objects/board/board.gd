@@ -109,6 +109,7 @@ func auto_sort_cards() -> void:
 		
 		elif not first_empty_final_slot:
 			first_empty_final_slot = card_slot
+			lowest_sorted_card_id = -1
 	
 	var possible_cards_to_sort: Dictionary = {}
 	

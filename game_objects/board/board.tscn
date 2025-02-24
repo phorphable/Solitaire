@@ -149,10 +149,15 @@ visible = false
 text = "Settings"
 
 [connection signal="update_dragon_buttons" from="." to="Buttons/DragonButton" method="_on_board_update_dragon_buttons"]
+[connection signal="update_dragon_buttons" from="." to="Buttons/DragonButton2" method="_on_board_update_dragon_buttons"]
+[connection signal="update_dragon_buttons" from="." to="Buttons/DragonButton3" method="_on_board_update_dragon_buttons"]
 [connection signal="button_pressed" from="Buttons/DragonButton" to="." method="_on_dragon_button_pressed" binds= [3]]
 [connection signal="button_pressed" from="Buttons/DragonButton2" to="." method="_on_dragon_button_pressed" binds= [4]]
 [connection signal="button_pressed" from="Buttons/DragonButton3" to="." method="_on_dragon_button_pressed" binds= [5]]
 [connection signal="button_pressed" from="Buttons/NewGame" to="." method="new_game"]
+[connection signal="button_pressed" from="Buttons/NewGame" to="Buttons/DragonButton" method="disable_button"]
+[connection signal="button_pressed" from="Buttons/NewGame" to="Buttons/DragonButton2" method="disable_button"]
+[connection signal="button_pressed" from="Buttons/NewGame" to="Buttons/DragonButton3" method="disable_button"]
 [connection signal="button_pressed" from="Buttons/Exit" to="." method="exit_game"]
 [connection signal="button_pressed" from="Buttons/Help" to="." method="show_help"]
 [connection signal="button_pressed" from="Buttons/Settings" to="." method="show_settings"]
